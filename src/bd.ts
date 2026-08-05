@@ -2,7 +2,7 @@ import fs from 'fs'
 
 const DB_PATH = new URL('../bd.json', import.meta.url).pathname
 
-interface Task {
+export interface Task {
     id: number;
     description: string;
     status: string;
@@ -14,7 +14,7 @@ const DEFAULT_DB = {
     "tasks": []
 };
 
-export function getDB() {
+export const getDB =() => {
     if (!fs.existsSync(DB_PATH)) {
         fs.writeFileSync(DB_PATH, JSON.stringify(DEFAULT_DB, null, 4));
         return DEFAULT_DB;
@@ -24,7 +24,7 @@ export function getDB() {
     return JSON.parse(db);
 }
 
-export const saveDB = (db: object) => {
+export const saveDB = (db = DEFAULT_DB) => {
     fs.writeFileSync(DB_PATH, JSON.stringify(db, null, 4));
     return db;
 }

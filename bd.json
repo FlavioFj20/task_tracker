@@ -1,31 +1,18 @@
 {
     "tasks": [
         {
-            "task": "str"
-        },
-        {
-            "task": "str"
-        },
-        {
             "id": 1,
-            "description": "str",
-            "status": "done",
-            "createdAt": "2026-08-05T16:46:39.618Z",
-            "updatedAt": "2026-08-05T16:46:39.618Z"
+            "description": "delete",
+            "status": "in-progress",
+            "createdAt": "2026-08-05T19:27:03.069Z",
+            "updatedAt": "2026-08-05T19:41:12.992Z"
         },
         {
-            "id": 1,
-            "description": "str",
+            "id": 2,
+            "description": "delete",
             "status": "done",
-            "createdAt": "2026-08-05T16:47:39.641Z",
-            "updatedAt": "2026-08-05T16:47:39.641Z"
-        },
-        {
-            "id": 1,
-            "description": "str",
-            "status": "done",
-            "createdAt": "2026-08-05T16:58:06.158Z",
-            "updatedAt": "2026-08-05T16:58:06.158Z"
+            "createdAt": "2026-08-05T19:27:04.669Z",
+            "updatedAt": "2026-08-05T19:41:36.161Z"
         }
     ]
 }

@@ -1,4 +1,5 @@
 import { parseArgs } from "node:util";
+import { Add, Delete, List, ListByStatus, Mark, Update } from "./tasks.js";
 
 function handleAddCommand(arg: string | undefined, extra: string[] | undefined) {
     if (!arg) {
@@ -8,46 +9,51 @@ function handleAddCommand(arg: string | undefined, extra: string[] | undefined) 
     }
     
     console.log(`✅ Adding item: "${arg}"`);
-    
+    Add(arg);
     if (extra) {
       console.warn(`Warning: Extra arguments ignored: ${extra.join(", ")}`);
     }
 }
 
-function handleUpdateCommand(id: number | undefined, args: string[] | undefined){ 
-
-    if (!args || args.length < 1) {
+function handleUpdateCommand(id: number, args: string[]){ 
+    if ((!args || args.length < 1)) {
         console.log('Warning: Not enough arguments');
         process.exit(1);
     }
     console.log(`✅ Updating item: "${args[0]}"`);
+    Update(id, args[0]);
     if (args.length > 1) {
       console.warn(`Warning: Extra arguments ignored: ${args.slice(1).join(", ")}`);
     }
 }
 
-function handleDeleteCommand(id: number | undefined, args: string[] | undefined)
+function handleDeleteCommand(id: number, args: string[] | undefined)
 {
   if (!id) {
     console.error("Error: Inform the ID or name of the item to delete.");
     process.exit(1);
   }
   console.log(`🗑️  Deleting item: "${id}"`);
+  Delete(id);
   if (args && args.length > 0) {
     console.warn(`Warning: Extra arguments ignored: ${args.slice(1).join(", ")}`);
   }
 }
 
-function handleMarkCommand(id: number | undefined, args: string[] | undefined, status: boolean)
+function handleMarkCommand(id: number, args: string[] | undefined, status: boolean)
 {
   if (!id) {
     console.error("Error: Inform the ID or name of the item to delete.");
     process.exit(1);
   }
-  if (status)
-    console.log(`Marking item as done '${id}'.`);
-  else
-    console.log(`Marking in progress item '${id}'.`);
+  if (status){
+      console.log(`Marking item as done '${id}'.`);
+      Mark(id, "done");
+  }
+  else{
+      console.log(`Marking in progress item '${id}'.`);
+      Mark(id, "in-progress");
+  }
   if (args && args.length > 0) {
     console.warn(`Warning: Extra arguments ignored: ${args.slice(1).join(", ")}`);
   }
@@ -58,16 +64,21 @@ function handleListCommand(arg: string | undefined){
     {
         case "done":
             console.log("📋 List all done items...");
+            ListByStatus("done");
             break;
         case "todo" :
             console.log("📋 List all to do items...");
+            ListByStatus("todo");
             break;
         case "in-progress" :
             console.log("📋 List all in-progress items...");
+            ListByStatus("in-progress");
             break;
         default:
-            if (!arg)
+            if (!arg){
                 console.log("📋 List all of items...");
+                List();
+            }
             else {
                 console.error(`Error: unknown status'${arg}'.`);
                 console.log("Valid status: done, todo, in-progress");
