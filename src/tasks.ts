@@ -58,9 +58,9 @@ export function List() {
         return ;
     }
     db.tasks.forEach((task:Task) => {
-        console.log(`Task:\n\t\tID: [ ${task.id} ]`);
-        console.log(`\t\tSTATUS: [ ${task.status} ]`);
-        console.log(`\t\tDESCRIPTION: [ ${task.description} ]`);
+        console.log(`Task:\n\tID: ${task.id}`);
+        console.log(`\tSTATUS: ${task.status}`);
+        console.log(`\tDESCRIPTION: ${task.description}`);
     });
 }
 
@@ -71,9 +71,9 @@ export function ListByStatus(status:string) {
     db.tasks.forEach((task:Task) => {
         if (task.status === status){
             found = true;
-            console.log(`Task:\n\t\tID: [ ${task.id} ]`);
-            console.log(`\t\tSTATUS: [ ${task.status} ]`);
-            console.log(`\t\tDESCRIPTION: [ ${task.description} ]`);
+            console.log(`Task:\n\tID: ${task.id}`);
+            console.log(`\tSTATUS: ${task.status}`);
+            console.log(`\tDESCRIPTION: ${task.description}`);
         }
     });
     if (!found)
@@ -89,9 +89,9 @@ export function ListNotDone(status:string) {
     db.tasks.forEach((task:Task) => {
         if (task.status !== status){
             found = true;
-            console.log(`Task:\n\t\tID: [ ${task.id} ]`);
-            console.log(`\t\tSTATUS: [ ${task.status} ]`);
-            console.log(`\t\tDESCRIPTION: [ ${task.description} ]`);
+            console.log(`Task:\n\tID: ${task.id}`);
+            console.log(`\tSTATUS: ${task.status}`);
+            console.log(`\tDESCRIPTION: ${task.description}`);
         }
     });
     if (!found)
