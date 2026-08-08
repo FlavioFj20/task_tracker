@@ -1,5 +1,5 @@
 {
-  "name": "task_tracker",
+  "name": "task_cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,12 +12,20 @@
     "tsx": "^4.23.1",
     "typescript": "^7.0.2"
   },
+  "bin": {
+    "task_cli": "./dist/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx index.ts"
+    "build": "tsc",
+    "task": "tsx ./src/index.ts",
+    "prepare": "npm run build"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module"
 }
